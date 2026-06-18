@@ -9,7 +9,7 @@ public class main {
         Scanner scanner = new Scanner(System.in);
 
         // Objeto ArrayList dos veículos cadastrados
-        ArrayList<Vehicle> vehicle = new ArrayList<>();
+        ArrayList<Vehicles> vehicles = new ArrayList<>();
 
         // Loop para imprimir a interface de opções
         boolean codeRunning = true;
@@ -31,27 +31,39 @@ public class main {
             try {
                 System.out.print("Opção Selecionada: ");
                 menuOption = scanner.nextInt();
+                scanner.nextLine(); // limpa o buffer
                 
             } catch(InputMismatchException e) {
                 System.out.println("A opção precisa ser apenas números inteiros.\n");
-                scanner.nextLine(); // limpa o buffer
                 continue;
             }
 
             // Redirecionamento do usuário ao método necessário
             switch (menuOption) {
-                case 1:
-                    vehicleRegistration(scanner);
+                case 1: {
+                    Vehicles vehicle = VehicleService.vehicleRegistration(scanner);
+                    vehicles.add(vehicle);
+                    break;
+                }
 
-                case 2:
-                    listVehicles(scanner);
+                case 2: {
+                    VehicleService.listVehicles(vehicles);
+                    break;
+                }
 
-                case 3:
-                    excludeVehicles(scanner);
+                case 3: {
+                    VehicleService.excludeVehicles();
+                    break;
+                }
+                    
 
                 case 4:
                     System.out.println("\nSaíndo do Sistema...");
                     codeRunning = false;
+                    
+                default:
+                    System.out.println("\nOpção fora das informadas no menu, tente novamente.");
+                    continue;
             }
         }
 

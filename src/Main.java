@@ -2,22 +2,22 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
-public class Main {
-    // Método principal para execução do programa
-    public static void main (String[] args) {
-        // Objeto Scanner para entrada de dados
+public class main {
+    // Método principal do programa
+    public static void main(String[] args) {
+        // Objeto Scanner para entrada de dados do usuário
         Scanner scanner = new Scanner(System.in);
 
-        // Lista de veículos cadastrados no sistema
+        // Objeto ArrayList dos veículos cadastrados
         ArrayList<Vehicle> vehicle = new ArrayList<>();
 
-        // Interface de interação do usuário
+        // Loop para imprimir a interface de opções
         boolean codeRunning = true;
 
         while (codeRunning) {
-            System.out.println("=".repeat(10) + " Gestão de Veículos " + "=".repeat(10));
+            System.out.println("=".repeat(10) + " Sistema de Gestão de veículos " + "=".repeat(10));
 
-            System.out.println("\n" + """
+            System.out.print("""
             Opções Disponíveis
             1- Cadastrar Veículos
             2- Listar Todos Veículos
@@ -31,23 +31,30 @@ public class Main {
             try {
                 System.out.print("Opção Selecionada: ");
                 menuOption = scanner.nextInt();
-
-                // Direcionamento do método conforme a entrada de dados
-                switch (menuOption) {
-                    case 1:
-                        System.out.println("Deu certo!");
-                        scanner.nextLine();
-                    
-                    case 2:
-                        System.out.println("Deu certo duas vezes!");
-                        scanner.nextLine();
-                }
                 
             } catch(InputMismatchException e) {
                 System.out.println("A opção precisa ser apenas números inteiros.\n");
-                scanner.nextLine();
+                scanner.nextLine(); // limpa o buffer
                 continue;
             }
+
+            // Redirecionamento do usuário ao método necessário
+            switch (menuOption) {
+                case 1:
+                    vehicleRegistration(scanner);
+
+                case 2:
+                    listVehicles(scanner);
+
+                case 3:
+                    excludeVehicles(scanner);
+
+                case 4:
+                    System.out.println("\nSaíndo do Sistema...");
+                    codeRunning = false;
+            }
         }
+
+        scanner.close(); // Finalizar o objeto Scanner
     }
 }

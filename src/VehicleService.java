@@ -47,7 +47,7 @@ public class VehicleService {
         }
 
         for (Vehicles vehicle : vehicles) {
-            System.out.println(vehicle);
+            System.out.println(vehicles);
         }
 
         System.out.println();

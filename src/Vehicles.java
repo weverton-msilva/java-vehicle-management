@@ -12,4 +12,14 @@ public class Vehicles {
         this.vehicleRenavam = vehicleRenavam;
         this.vehiclePlate = vehiclePlate;
     }
+
+    @Override
+    public String toString() {
+        return "Marca: " + vehicleBrand +
+               "\nModelo: " + vehicleModel +
+               "\nAno: " + vehicleYear +
+               "\nRenavam: " + vehicleRenavam +
+               "\nPlaca: " + vehiclePlate +
+               "\n" + "-".repeat(30);
+    }
 }

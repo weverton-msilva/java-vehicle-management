@@ -1,72 +1,50 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class main {
-    // Método principal do programa
-    public static void main(String[] args) {
-        // Objeto Scanner para entrada de dados do usuário
+public class Main {
+    // Método de execução principal do programa
+    public static void main (String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Objeto ArrayList dos veículos cadastrados
         ArrayList<Vehicles> vehicles = new ArrayList<>();
 
-        // Loop para imprimir a interface de opções
-        boolean codeRunning = true;
+        // Loop para execução da interface e menu do usuário
+        boolean generateInterface = true;
 
-        while (codeRunning) {
-            System.out.println("=".repeat(10) + " Sistema de Gestão de veículos " + "=".repeat(10));
+        while (generateInterface) {
+            System.out.println("=".repeat(10) + " GESTÃO DE FROTAS SIMPLES " + "=".repeat(10));
 
-            System.out.print("""
-            Opções Disponíveis
-            1- Cadastrar Veículos
+            System.out.println("\n" + """
+            1- Cadastrar Novos Veículos
             2- Listar Todos Veículos
             3- Excluir Veículo
-            4- Sair do Sistema
-            """);
+            4- Sair do Sistema""");;
 
-            // Entrada e validação dos dados passado pelo usuário
-            int menuOption;
+            int selectedOption;
 
             try {
                 System.out.print("Opção Selecionada: ");
-                menuOption = scanner.nextInt();
-                scanner.nextLine(); // limpa o buffer
+                selectedOption = scanner.nextInt();
                 
-            } catch(InputMismatchException e) {
-                System.out.println("A opção precisa ser apenas números inteiros.\n");
+            } catch (InputMismatchException e) {
+                System.out.println("\nOpção informada não está disponível entre as opções do menu.");
+                scanner.nextLine(); // Limpar buffer
                 continue;
             }
 
-            // Redirecionamento do usuário ao método necessário
-            switch (menuOption) {
-                case 1: {
-                    Vehicles vehicle = VehicleService.vehicleRegistration(scanner);
+            switch (selectedOption) {
+                case 1: { // Redirecionar para o método de cadastro de novos veículos
+                    Vehicles vehicle = VehicleService.vehicleRegistration(scanner); 
                     vehicles.add(vehicle);
                     break;
-                }
+                }      
 
-                case 2: {
+                case 2: { // Redirecionar para o método de listagem de todos veículos
                     VehicleService.listVehicles(vehicles);
                     break;
                 }
-
-                case 3: {
-                    VehicleService.excludeVehicles();
-                    break;
-                }
-                    
-
-                case 4:
-                    System.out.println("\nSaíndo do Sistema...");
-                    codeRunning = false;
-                    
-                default:
-                    System.out.println("\nOpção fora das informadas no menu, tente novamente.");
-                    continue;
             }
         }
-
-        scanner.close(); // Finalizar o objeto Scanner
     }
 }

@@ -2,14 +2,12 @@ public class Vehicles {
     String vehicleBrand;
     String vehicleModel;
     int vehicleYear;
-    int vehicleRenavam;
     String vehiclePlate;
     
-    public Vehicles(String vehicleBrand, String vehicleModel, int vehicleYear, int vehicleRenavam, String vehiclePlate) {
+    public Vehicles(String vehicleBrand, String vehicleModel, int vehicleYear, String vehiclePlate) {
         this.vehicleBrand = vehicleBrand;
         this.vehicleModel = vehicleModel;
         this.vehicleYear = vehicleYear;
-        this.vehicleRenavam = vehicleRenavam;
         this.vehiclePlate = vehiclePlate;
     }
 
@@ -18,7 +16,6 @@ public class Vehicles {
         return "Marca: " + vehicleBrand +
                "\nModelo: " + vehicleModel +
                "\nAno: " + vehicleYear +
-               "\nRenavam: " + vehicleRenavam +
                "\nPlaca: " + vehiclePlate +
                "\n" + "-".repeat(30);
     }
